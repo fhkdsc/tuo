@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<style>
+		*{margin:0;padding:0;}
+		#box{width:600px;height:800px;
+			background:#ccc;
+		
+		}
+		#ball{width:100px;height:100px;
+			background:#f00;border-radius:50%;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="ball"></div>
+	</div>
+</body>
+<script>
+	 var box = document.getElementById("box");
+	 var ball = document.getElementById("ball");
+	 var timer=null,speedX=10,speedY=10;
+	 timer=setInterval(move,30);
+	 function move(){
+	 	x=ball.offsetLeft;
+	 	y=ball.offsetTop;
+	 	if(x>=box.offsetWidth-100){
+	 		speedX=-10;
+	 	}else if(x<0){
+	 		speedX=10;
+	 	}
+	 	if(y>=box.offsetHeight-100){
+	 		speedY=-10;
+	 	}else if(y<0){
+	 		speedY=10;
+	 	}
+	 	ball.style.left=ball.offsetLeft+speedX+'px';
+	 	ball.style.top = ball.offsetTop+speedY+'px';
+	 	console.log(ball.style.left)
+	 }
+	 var arr1=[1,2,3,4,1,2,3,4,5];
+	 var arr2=[];
+	 for(var i=0;i<arr1.length;i++){
+	 	if(arr2.indexOf(arr1[i])==-1){
+	 		arr2.push(arr1[i]);
+	 	}
+	 }
+	 console.log(arr2)
+	
+</script>
+</html>

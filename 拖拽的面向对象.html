@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>标题</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<style>
+		*{margin:0;padding:0;}
+		/*.main{width:600px;height:800px;background:#ccc;position:relative;}
+		.qiu{width:100px;height:100px;background:#f00;border-radius:50%;position:absolute;}*/
+	</style>
+</head>
+<body>
+	
+</body>
+<script>
+	//创建公共的属性
+	// var common={
+	// 	width:20,
+	// 	heigth:20,
+	// 	speed:10,
+	// 	timer:null
+	// }
+	//创建球对象 这个是球的属性 用构造函数方法
+	function Qiu(width,du,parw,speed){
+		this.div=document.createElement('div');
+		this.divpar=document.createElement('div');
+		document.body.appendChild(this.divpar);
+		this.divpar.appendChild(this.div);
+		this.div.setAttribute('style','width:'+width+'px;height:'+width+'px;border-radius:50%;background:#f00;position:absolute');
+		this.divpar.setAttribute('style','width:'+parw+'px;height:'+parw+'px;border:1px solid #000;margin:0 auto;position:relative');
+		this.speedX=speed*Math.sin(du);
+		this.speedY=speed*Math.cos(du);
+		this.dirX=1;//运动方向
+		this.dirY=1;
+		this.x=0;
+		this.y=0;
+		this.move();
+	}
+	//开始创建球 需要的方法
+	Qiu.prototype={
+		move:function(){
+			var me=this;
+			this.timer=setInterval(function(){
+				if(me.x<0){
+					me.dirX=-1;
+				}else if(me.x>me.divpar.offsetWidth-me.div.offsetWidth){
+					me.dirX=1;
+				}
+				if(me.y<0){
+					me.dirY=1;
+				}else if(me.y>me.divpar.offsetHeight-me.div.offsetHeight){
+					me.dirY=-1;
+				}
+				//console.log(this)
+				me.x+=me.speedX*me.dirX;
+				me.y+=me.speedY*me.dirY;
+				me.div.style.left=me.x+'px';
+				me.div.style.top=me.y+'px';
+
+			},30)
+		}
+	}
+	new Qiu(100,0,500,20)
+	new Ball(200,30,500,20)
+</script>
+</html>
